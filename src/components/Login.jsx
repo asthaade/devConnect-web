@@ -7,8 +7,8 @@ import { addUser } from "../utils/userSlice";
 
 const Login = () =>{
 
-    const [emailId , setEmailId] = useState("isha@gmail.com");
-    const [password, setPassword] = useState("Isha@123");
+    const [emailId , setEmailId] = useState("astha@gmail.com");
+    const [password, setPassword] = useState("Astha@123");
     const [error,setError] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -22,12 +22,12 @@ const Login = () =>{
                 password,
             }, { withCredentials: true });
             dispatch(addUser(res.data));
+            //console.log(res.data);
             navigate("/")
         }catch(err){
             setError(err?.response?.data || "Something went wrong");
-            //console.log(err);
+            console.log(err);
         }
-        
     }
     
     return (
