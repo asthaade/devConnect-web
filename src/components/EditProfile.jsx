@@ -38,6 +38,16 @@ const EditProfile = ({user}) => {
             setError(err.response.data);
         }
     }
+
+    const handleGenderChange = (event) => {
+        setGender(event.target.value);
+    };
+
+    const handleAboutChange = (event) => {
+        setAbout(event.target.value);
+    };
+    
+    
     
     return (
         <>
@@ -83,24 +93,25 @@ const EditProfile = ({user}) => {
         onChange={(e) => setAge(e.target.value)}
         />
     </fieldset>
-    <fieldset className="fieldset ">
-        <legend className="fieldset-legend py-2">Gender :</legend>
-        <input
-        type="text"
-        value = {gender}
-        className="input input-bordered w-full max-w-xs"
-        onChange={(e) => setGender(e.target.value)}
-        />
-    </fieldset>
-    <fieldset className="fieldset ">
+    <fieldset className="fieldset">
+    <legend className="fieldset-legend">Gender :</legend>
+    <select value={gender} onChange={handleGenderChange} className="select">
+    <option disabled={true}>Choose</option>
+    <option>male</option>
+    <option>female</option>
+    <option>others</option>
+    </select>
+</fieldset>
+<fieldset className="fieldset ">
         <legend className="fieldset-legend py-2">About :</legend>
         <input
         type="text"
         value = {about}
-        className="input input-bordered w-full max-w-xs"
+        className="input"
         onChange={(e) => setAbout(e.target.value)}
         />
     </fieldset>
+
     </div>
     <p className="text-red-600">{error}</p>
     <div className="card-actions justify-center m-2">
