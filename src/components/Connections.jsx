@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { addConnection } from '../utils/connectionSlice';
 import { BASE_URL } from '../utils/constants';
 
@@ -30,10 +31,11 @@ const Connections = () => {
         <h1 className='text-3xl'>Connections</h1>
 
         {connections.map((connection) => {
-            const {firstName, lastName,photoUrl, age, gender, about} = connection;
+            const {_id,firstName, lastName,photoUrl, age, gender, about} = connection;
             
             return (
                 <div
+                key={_id}
                     className="flex m-4 p-4 rounded-lg bg-base-300 w-1/2 mx-auto">
                 <div>
                     <img
@@ -49,6 +51,7 @@ const Connections = () => {
                     {age && gender && <p>{age + ", " + gender}</p>}
                     <p>{about}</p>
                 </div>
+                <Link to = {"/chat/" + _id}><button className='btn btn-primary mt-2'>Chat</button></Link>
                 </div>
             );
         })}
